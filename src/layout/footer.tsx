@@ -8,7 +8,7 @@ const LabelContainer = styled.div`
 `;
 const FooterDetail = styled.div`
   justify-content: center;
-  background-color: black;
+  background-color: #292F32;
   width: 100vw;
   height: 66px;
   display: flex;
@@ -23,6 +23,7 @@ const FooterText = styled.text`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  margin-bottom: 4px;
 `;
 const FooterCopyright = styled.text`
   margin-left: 20px;

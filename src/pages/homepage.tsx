@@ -10,6 +10,7 @@ import LogoWord from "../assets/logo_word.png";
 import Fruit from "../assets/fruit.png";
 import Art from "../assets/art.png";
 import Footer from "../layout/footer";
+import {useNavigate} from "react-router-dom";
 
 const MainPageContainer = styled.div`
   width: 100vw;
@@ -217,6 +218,13 @@ const ContentImage = styled.img`
 `;
 
 const HomePage: React.FC = () => {
+  const navigate=useNavigate();
+  const handleServiceNavigate=()=>{
+    navigate("/sale");
+  };
+  const handleContentNavigate=()=>{
+    navigate("/create");
+  };
   return (
     <MainPageContainer>
       <StyledHeader>
@@ -266,7 +274,7 @@ const HomePage: React.FC = () => {
       <SaleBoxContainer>
         <SaleTextContainer style={{ marginLeft: "38px" }}>
           <div>농산물 판매 및 구매</div>
-          <SaleButton>
+          <SaleButton onClick={handleServiceNavigate}>
             <div>서비스 이용하기</div>
             <img
               src={RightArrow}
@@ -281,8 +289,8 @@ const HomePage: React.FC = () => {
       </SaleBoxContainer>
       <ContentContainer>
         <ContentTextContainer style={{ marginLeft: "38px" }}>
-          <div>농산물 판매 및 구매</div>
-          <ContentButton>
+          <div>맞춤형 콘텐츠 제작</div>
+          <ContentButton onClick={handleContentNavigate}>
             <div>서비스 이용하기</div>
             <img
               src={RightArrow}

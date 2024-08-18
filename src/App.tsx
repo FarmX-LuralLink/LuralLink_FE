@@ -1,13 +1,19 @@
 import "./App.css";
-import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import HomePage from "../src/pages/homepage";
+import SalePage from "../src/pages/salepage";
+import CreatePage from "./pages/createpage";
+import UploadPage from "./pages/uploadpage";
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<HomePage/>}/>
+        <Route path="/sale" element={<SalePage/>}/>
+        <Route path="/create" element={<CreatePage/>}/>
+        <Route path="/upload" element={<UploadPage/>}/>
+
       </Routes>
     </Router>
     

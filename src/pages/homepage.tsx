@@ -78,11 +78,6 @@ const GreyCircleContainer = styled.div`
   justify-content: flex-end;
   margin-right: 99px;
 `;
-
-const GreyCircleWrapper = styled.div`
-  height: 18px;
-  width: 18px;
-`;
 const ServiceButton = styled.button`
   display: flex;
   background-color: transparent;
@@ -256,9 +251,7 @@ const HomePage: React.FC = () => {
       </LogoWordContainer>
       <ServiceDetailButton>서비스 알아보기</ServiceDetailButton>
       <GreyCircleContainer>
-        <GreyCircleWrapper>
-          <img src={GreyCircle} alt="greycircle" />
-        </GreyCircleWrapper>
+          <img src={GreyCircle} alt="greycircle" style={{height:'18px',width:'18px'}} />
       </GreyCircleContainer>
       <ServiceButton>services</ServiceButton>
       <YellowCircleContainer>

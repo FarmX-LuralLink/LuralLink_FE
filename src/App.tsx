@@ -4,6 +4,7 @@ import HomePage from "../src/pages/homepage";
 import SalePage from "../src/pages/salepage";
 import CreatePage from "./pages/createpage";
 import UploadPage from "./pages/uploadpage";
+import ExamplePage from "./pages/examplepage";
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
         <Route path="/sale" element={<SalePage/>}/>
         <Route path="/create" element={<CreatePage/>}/>
         <Route path="/upload" element={<UploadPage/>}/>
-
+        <Route path="/airesult" element={<ExamplePage/>}/>
       </Routes>
     </Router>
     

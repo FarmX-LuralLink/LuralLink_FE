@@ -6,7 +6,7 @@ import Cartoon from "../assets/cartoon.png";
 import Poster from "../assets/poster.png";
 import Footer from "../layout/footer";
 import PromptIcon from "../assets/prompt.png";
-import { useNavigate } from "react-router-dom";
+import AiResult from "../assets/airesult.png";
 
 const CreatePageContainer = styled.div`
   display: flex;
@@ -68,7 +68,7 @@ const Ratio = styled.div`
   border: 1px solid #8a8a8a;
 `;
 
-const ImageContainer = styled.div`
+const ImageContainer = styled.img`
   border-radius: 5px;
   width: 100%;
   height: 268px;
@@ -117,11 +117,7 @@ margin: 0;
   height: 39px;
 `;
 
-const CreatePage: React.FC = () => {
-    const navigate=useNavigate();
-    const handleExampleNavigate=()=>{
-        navigate('/airesult')
-    }
+const ExamplePage: React.FC = () => {
   return (
     <CreatePageContainer>
       <Header></Header>
@@ -136,17 +132,17 @@ const CreatePage: React.FC = () => {
           <RatioText>가로세로비율</RatioText>
           <Ratio></Ratio>
         </RatioContainer>
-        <ImageContainer></ImageContainer>
+        <ImageContainer src={AiResult} alt="ai result"></ImageContainer>
         <PromptContainer>
           <TextContainer>
             <PromptName>프롬프트</PromptName>
             <PromptText placeholder="요청사항을 입력하세요"></PromptText>
           </TextContainer>
-          <PromptButton src={PromptIcon} onClick={handleExampleNavigate} />
+          <PromptButton src={PromptIcon} />
         </PromptContainer>
       </BodyContainer>
       <Footer></Footer>
     </CreatePageContainer>
   );
 };
-export default CreatePage;
+export default ExamplePage;

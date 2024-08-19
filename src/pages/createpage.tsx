@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Header from "../layout/header";
 import Ad from "../assets/advertisement.png";
@@ -62,10 +62,19 @@ const RatioText = styled.text`
   text-align: start;
 `;
 const Ratio = styled.div`
+display:flex;
+align-items: center;
+padding-left: 14px;
   width: 173px;
   height: 29px;
   border-radius: 10px;
   border: 1px solid #8a8a8a;
+  color: #000;
+  font-family: NanumGothic;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 `;
 
 const ImageContainer = styled.div`
@@ -81,16 +90,16 @@ const PromptContainer = styled.div`
   display: flex;
   flex-direction: row;
   width: calc(100%-44px);
-  height: 99px;
   border-radius: 10px;
   background: #fff;
   box-shadow: 0px 0px 5.7px 3px rgba(197, 167, 167, 0.1);
 `;
 const TextContainer = styled.div`
-display:flex;
-flex-direction: column;
-margin: 0;
-width: 256px;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  width: 256px;
+  height: 34px;
 `;
 const PromptName = styled.text`
   display: flex;
@@ -105,23 +114,40 @@ const PromptName = styled.text`
   margin-bottom: 9px;
 `;
 const PromptText = styled.input`
-padding: 0;
+  padding: 0;
   border: none;
   width: 256px;
   height: 34px;
   max-width: 256px;
+  font-size: 15px;
 `;
 const PromptButton = styled.img`
-margin: 0;
+  display: flex;
+  align-items: center;
+  margin: 0;
   width: 39px;
   height: 39px;
 `;
+const RatioMenu = styled.div`
+  border: 1px solid #8a8a8a;
+  width: 173px;
+  height: 102px;
+  color: #000;
+  /* font-family: NanumGothic; */
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+`;
 
 const CreatePage: React.FC = () => {
-    const navigate=useNavigate();
-    const handleExampleNavigate=()=>{
-        navigate('/airesult')
-    }
+  //dropdown
+  const [isOpen, setIsOpen] = useState(false);
+  //페이지 이동
+  const navigate = useNavigate();
+  const handleExampleNavigate = () => {
+    navigate("/airesult");
+  };
   return (
     <CreatePageContainer>
       <Header></Header>
@@ -134,7 +160,15 @@ const CreatePage: React.FC = () => {
         </CategoryContainer>
         <RatioContainer>
           <RatioText>가로세로비율</RatioText>
-          <Ratio></Ratio>
+          <Ratio onClick={() => setIsOpen(!isOpen)}>비율 선택</Ratio>
+          {isOpen && (
+            <RatioMenu>
+              <p>가로(4:3)</p>
+              <p>세로(3:4)</p>
+              <p>정사각형(1:1)</p>
+              <p>와이드스크린(16:9)</p>
+            </RatioMenu>
+          )}
         </RatioContainer>
         <ImageContainer></ImageContainer>
         <PromptContainer>

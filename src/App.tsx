@@ -5,12 +5,13 @@ import SalePage from "../src/pages/salepage";
 import CreatePage from "./pages/createpage";
 import UploadPage from "./pages/uploadpage";
 import ExamplePage from "./pages/examplepage";
+import DetailPage from "./pages/detailpage";
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<HomePage/>}/>
+        <Route path="/" element={<DetailPage/>}/>
         <Route path="/sale" element={<SalePage/>}/>
         <Route path="/create" element={<CreatePage/>}/>
         <Route path="/upload" element={<UploadPage/>}/>

@@ -76,7 +76,6 @@ padding-left: 14px;
   font-weight: 400;
   line-height: normal;
 `;
-
 const ImageContainer = styled.div`
   border-radius: 5px;
   width: 100%;
@@ -129,6 +128,8 @@ const PromptButton = styled.img`
   height: 39px;
 `;
 const RatioMenu = styled.div`
+position: absolute;
+background-color: white;
   border: 1px solid #8a8a8a;
   width: 173px;
   height: 102px;
@@ -138,6 +139,8 @@ const RatioMenu = styled.div`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  border-radius:10px;
+
 `;
 
 const CreatePage: React.FC = () => {

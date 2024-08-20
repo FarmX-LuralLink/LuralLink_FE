@@ -140,8 +140,6 @@ const PromptText = styled.text`
   text-align: start;
   padding: 0;
   border: none;
-  width: 256px;
-  max-width: 256px;
   height: 34px;
   max-width: 240px;
   font-size: 15px;

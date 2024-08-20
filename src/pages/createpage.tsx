@@ -50,6 +50,7 @@ const RatioContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 23px;
+  position: relative;
 `;
 const RatioText = styled.text`
   color: #000;
@@ -61,10 +62,12 @@ const RatioText = styled.text`
   margin-bottom: 8px;
   text-align: start;
 `;
-const Ratio = styled.div`
-display:flex;
-align-items: center;
-padding-left: 14px;
+const RatioButton = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 9px;
+  align-items: center;
+  padding-left: 14px;
   width: 173px;
   height: 29px;
   border-radius: 10px;
@@ -75,6 +78,38 @@ padding-left: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  cursor: pointer;
+  position: relative;
+`;
+const RatioRectangle = styled.div<{ width: number; height: number }>`
+  width: ${({ width }) => width}px;
+  height: ${({ height }) => height}px;
+  border: 1px solid #000;
+`;
+const RatioDropdown = styled.div<{isOpen:boolean}>`
+  display: ${({ isOpen }) => (isOpen ? "block" : "none")};
+  position: absolute;
+  top: 19px;
+  left: 0;
+  width: 187px;
+  border: 1px solid #8a8a8a;
+  border-radius: 10px;
+  background-color: #fff;
+  z-index: 10;
+`;
+const RatioOption = styled.div`
+display: flex;
+flex-direction: row;
+  padding: 8px 14px;
+  font-size: 11px;
+  color: #000;
+  cursor: pointer;
+  &:hover {
+    background-color: #f0f0f0;
+  }
+  gap: 9px;
+  text-align: center;
+  align-items: center;
 `;
 const ImageContainer = styled.div`
   border-radius: 5px;
@@ -82,6 +117,7 @@ const ImageContainer = styled.div`
   height: 268px;
   background-color: #f3f3f3;
   margin-bottom: 18px;
+  z-index: 0;
 `;
 const PromptContainer = styled.div`
   gap: 0;
@@ -98,7 +134,7 @@ const TextContainer = styled.div`
   flex-direction: column;
   margin: 0;
   width: 256px;
-  height: 34px;
+  height: 60px;
 `;
 const PromptName = styled.text`
   display: flex;
@@ -112,13 +148,19 @@ const PromptName = styled.text`
   text-align: start;
   margin-bottom: 9px;
 `;
-const PromptText = styled.input`
+const PromptText = styled.textarea`
   padding: 0;
   border: none;
-  width: 256px;
-  height: 34px;
-  max-width: 256px;
+  height: auto;
+  max-width: 240px;
   font-size: 15px;
+  max-height: none;
+  resize: none;
+  white-space: pre-wrap; /* 공백 및 줄바꿈을 유지 */
+  word-wrap: break-word; /* 단어를 넘지 않도록 줄바꿈 */
+  overflow-wrap: break-word;
+  overflow: hidden;
+  outline: none;
 `;
 const PromptButton = styled.img`
   display: flex;
@@ -127,25 +169,36 @@ const PromptButton = styled.img`
   width: 39px;
   height: 39px;
 `;
-const RatioMenu = styled.div`
-position: absolute;
-background-color: white;
-  border: 1px solid #8a8a8a;
-  width: 173px;
-  height: 102px;
-  color: #000;
-  /* font-family: NanumGothic; */
-  font-size: 11px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  border-radius:10px;
-
-`;
 
 const CreatePage: React.FC = () => {
   //dropdown
   const [isOpen, setIsOpen] = useState(false);
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+  //ratio 선택
+  const [selectedRatio, seSelectedRatio] = useState("가로(4:3)");
+  const handleSelectedRatio = (ratio: string) => {
+    seSelectedRatio(ratio);
+    setIsOpen(false);
+  };
+
+  const getRatioSize = () => {
+    switch (selectedRatio) {
+      case "가로(4:3)":
+        return { width: 14, height: 10 };
+      case "세로(3:4)":
+        return { width: 13, height: 8 };
+      case "정사각형(1:1)":
+        return { width: 11, height: 11 };
+      case "와이드스크린(16:9)":
+        return { width: 17, height: 8 };
+      default:
+        return { width: 14, height: 10 };
+    }
+  };
+
+  const { width, height } = getRatioSize();
   //페이지 이동
   const navigate = useNavigate();
   const handleExampleNavigate = () => {
@@ -163,15 +216,16 @@ const CreatePage: React.FC = () => {
         </CategoryContainer>
         <RatioContainer>
           <RatioText>가로세로비율</RatioText>
-          <Ratio onClick={() => setIsOpen(!isOpen)}>비율 선택</Ratio>
-          {isOpen && (
-            <RatioMenu>
-              <p>가로(4:3)</p>
-              <p>세로(3:4)</p>
-              <p>정사각형(1:1)</p>
-              <p>와이드스크린(16:9)</p>
-            </RatioMenu>
-          )}
+          <RatioButton onClick={toggleDropdown}>
+            <RatioRectangle width={width} height={height} />
+            <div>{selectedRatio}</div>
+          </RatioButton>
+          <RatioDropdown isOpen={isOpen}>
+            <RatioOption onClick={() => handleSelectedRatio("가로(4:3)")}><RatioRectangle width={14} height={10}/>가로(4:3)</RatioOption>
+            <RatioOption onClick={() => handleSelectedRatio("세로(3:4)")}><RatioRectangle width={13} height={8}/>세로(3:4)</RatioOption>
+            <RatioOption onClick={() => handleSelectedRatio("정사각형(1:1)")}><RatioRectangle width={11} height={11}/>정사각형(1:1)</RatioOption>
+            <RatioOption onClick={() => handleSelectedRatio("와이드스크린(16:9)")}><RatioRectangle width={17} height={8}/>와이드스크린(16:9)</RatioOption>
+          </RatioDropdown>
         </RatioContainer>
         <ImageContainer></ImageContainer>
         <PromptContainer>

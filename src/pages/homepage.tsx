@@ -11,6 +11,7 @@ import Fruit from "../assets/fruit.png";
 import Art from "../assets/art.png";
 import Footer from "../layout/footer";
 import {useNavigate} from "react-router-dom";
+import Community from "../assets/community.png"
 
 const MainPageContainer = styled.div`
   width: 100vw;
@@ -211,6 +212,53 @@ const ContentImageContainer = styled.div`
 const ContentImage = styled.img`
   width: 100%;
 `;
+const CommunityContainer = styled.div`
+  justify-content: space-between;
+  width: 100vw;
+  height: 163.75px;
+  flex-shrink: 0;
+  background-color: #D8EAFF;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  color: #333;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+`;
+const CommunityTextContainer = styled.div`
+  justify-content: start;
+  align-items: start;
+  display: flex;
+  flex-direction: column;
+`;
+const CommunityButton = styled.button`
+  display: flex;
+  flex-direction: row;
+  width: 154px;
+  height: 37px;
+  flex-shrink: 0;
+  color: #fff;
+  text-align: center;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  border-radius: 10px;
+  background: #6A90BC;
+  margin-top: 21px;
+`;
+const CommunityImageContainer = styled.div`
+  width: 138px;
+  height: 126.97px;
+  margin-bottom: 23px;
+  margin-right: 32px;
+`;
+
+const CommunityImage = styled.img`
+  width: 100%;
+`;
 
 const HomePage: React.FC = () => {
   const navigate=useNavigate();
@@ -296,6 +344,22 @@ const HomePage: React.FC = () => {
           <ContentImage src={Art} alt="art" />
         </ContentImageContainer>
       </ContentContainer>
+      <CommunityContainer>
+        <CommunityTextContainer style={{ marginLeft: "38px" }}>
+          <div>커뮤니티</div>
+          <CommunityButton>
+            <div>서비스 이용하기</div>
+            <img
+              src={RightArrow}
+              alt="right_arrow"
+              style={{ marginLeft: "13px", height: "14px", width: "16px" }}
+            />
+          </CommunityButton>
+        </CommunityTextContainer>
+        <CommunityImageContainer>
+          <CommunityImage src={Community} alt="community" />
+        </CommunityImageContainer>
+      </CommunityContainer>
       <Footer></Footer>
     </MainPageContainer>
   );

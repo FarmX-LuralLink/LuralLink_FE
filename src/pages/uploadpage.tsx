@@ -5,6 +5,7 @@ import BackNavigation from "../assets/back_navigation.png";
 import TextBox from "../components/textbox";
 import FileUpload from "../components/fileupload";
 import CheckBox from "../components/checkbox";
+import DropdownMenu from "../components/dropdown";
 
 const BodyContainer = styled.div`
   display: flex;
@@ -174,7 +175,10 @@ const UploadPage: React.FC = () => {
             소비자
           </RadioLabel>
         </TargetSelection>
-        <ItemInput>농산물 품종 선택</ItemInput>
+        <ItemInput>농산물 상위 품종 선택</ItemInput>
+        <DropdownMenu menu={["과일","채소"]} hinttext="종류" width="90vw" height="40px"/>
+        <ItemInput>농산물 하위 품종 선택</ItemInput>
+        <DropdownMenu menu={["test1","test2"]} hinttext="종류" width="90vw" height="40px"/>
         <ItemInput>판매 단위(kg)</ItemInput>
         <TextBox hinttext="kg"></TextBox>
         <ItemInput>단위당 가격(원)</ItemInput>

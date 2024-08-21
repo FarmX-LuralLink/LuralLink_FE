@@ -11,11 +11,12 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<DetailPage/>}/>
+        <Route path="/" element={<HomePage/>}/>
         <Route path="/sale" element={<SalePage/>}/>
         <Route path="/create" element={<CreatePage/>}/>
         <Route path="/upload" element={<UploadPage/>}/>
         <Route path="/airesult" element={<ExamplePage/>}/>
+        <Route path="/detail" element={<DetailPage/>}/>
       </Routes>
     </Router>
     

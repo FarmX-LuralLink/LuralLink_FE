@@ -49,6 +49,7 @@ const AiFilterButton = styled.button<{isOpen:boolean}>`
   font-weight: 700;
   line-height: normal;
   flex-shrink: 0;
+  border: 1px solid #8a8a8a;
   background-color: ${(props) => (props.isOpen ? "#83bf5d" : "transparent")};
 `;
 const BoundaryLine = styled.line`
